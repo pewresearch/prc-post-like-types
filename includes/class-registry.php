@@ -200,6 +200,7 @@ class Registry {
 			'prc-collections',
 			'prc-sitemap',
 			'prc-markdown-for-agents',
+			'prc-spoken-article',
 		);
 
 		// Add publication listing support if enabled.
