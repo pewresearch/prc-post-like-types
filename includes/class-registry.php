@@ -43,12 +43,11 @@ class Registry {
 	 * @hook init
 	 */
 	public function init() {
-		$this->loader->add_filter( 'prc_platform_rewrite_rules', $this, 'add_post_like_type_rewrite_rules', 10, 1 );
+		$this->loader->add_action( 'init', $this, 'add_post_like_type_rewrite_rules' );
 		$this->loader->add_filter( 'post_type_link', $this, 'get_post_like_type_permalink', 30, 3 );
 		$this->loader->add_action( 'init', $this, 'register_post_like_types', 10, 1 );
 		$this->loader->add_filter( 'prc_platform_post_publish_pipeline_post_types', $this, 'opt_post_like_types_into_pipeline', 10, 1 );
 		$this->loader->add_action( 'prc_platform_on_incremental_save', $this, 'enforce_post_like_type_format', 10, 1 );
-		$this->loader->add_filter( 'prc_platform_main_feed_post_types', $this, 'opt_into_main_feed', 10, 1 );
 	}
 
 	/**
@@ -192,7 +191,7 @@ class Registry {
 			'custom-fields',
 			'comments',
 			'prc-schema-seo',
-			'prc-social',
+			'prc-social-builder',
 			'prc-bylines',
 			'prc-art-direction',
 			'prc-related-posts',
@@ -281,17 +280,16 @@ class Registry {
 	/**
 	 * Add the rewrite rules for the post-like content types.
 	 *
-	 * @hook prc_platform_rewrite_rules
-	 *
-	 * @param array $rules The rewrite rules.
-	 * @return array The rewrite rules.
+	 * @hook init
 	 */
-	public function add_post_like_type_rewrite_rules( $rules ) {
+	public function add_post_like_type_rewrite_rules() {
 		foreach ( $this->post_like_types as $slug => $args ) {
 			$rewrite_slug = $args['rewrite']['slug'];
-			$rules        = $this->construct_additional_rewrite_rules( $rewrite_slug, $slug ) + $rules;
+			$rules        = $this->construct_additional_rewrite_rules( $rewrite_slug, $slug );
+			foreach ( $rules as $rule => $query ) {
+				add_rewrite_rule( $rule, $query, 'top' );
+			}
 		}
-		return $rules;
 	}
 
 	/**
@@ -350,22 +348,5 @@ class Registry {
 			}
 			wp_set_object_terms( $post->ID, $format_id, 'formats', true );
 		}
-	}
-
-	/**
-	 * Opt the post-like types into the main feed.
-	 *
-	 * Uses post types that have declared support for 'prc-publication-listing'.
-	 *
-	 * @hook prc_platform_main_feed_post_types
-	 *
-	 * @param array $post_types The post types.
-	 * @return array The post types.
-	 */
-	public function opt_into_main_feed( $post_types ) {
-		$pub_listing_post_types = get_post_types_by_support( 'prc-publication-listing' );
-		// Filter to only include post-like types registered by this class.
-		$our_pub_listing_types = array_intersect( $pub_listing_post_types, array_keys( $this->post_like_types ) );
-		return array_merge( $post_types, $our_pub_listing_types );
 	}
 }

@@ -83,6 +83,7 @@ class Plugin {
 
 		// Load files...
 		require_once plugin_dir_path( __DIR__ ) . '/includes/class-registry.php';
+		require_once plugin_dir_path( __DIR__ ) . '/includes/class-cli.php';
 
 		$this->init_dependencies();
 	}

@@ -19,7 +19,7 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       prc-post-like-types
- * Requires Plugins:  prc-platform-core
+ * Requires Plugins:  prc-scripts, prc-post-publish-pipeline
  */
 
 // If this file is called directly, abort.
@@ -28,6 +28,10 @@ if ( ! defined( 'WPINC' ) ) {
 }
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
+
+if ( ! defined( 'DEFAULT_TECHNICAL_CONTACT' ) ) {
+	define( 'DEFAULT_TECHNICAL_CONTACT', 'webdev@pewresearch.org' );
 }
 
 define( 'PRC_POST_LIKE_TYPES_FILE', __FILE__ );

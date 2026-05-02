@@ -1,19 +1,10 @@
 {
-    "name": "@prc/post-like-types",
-    "version": "1.0.0",
-    "description": "Provides 'post like' content types like pewresearch.org/decoded, pewresearch.org/engineering, or pewresearch.org/short-reads for PRC Platform.",
-    "scripts": {
-        "test": "wp-scripts test-playwright",
-        "test:env:start": "wp-env start",
-        "test:env:stop": "wp-env stop",
-        "test:env:clean": "wp-env clean all && wp-env start",
-        "test:env:destroy": "wp-env destroy"
-    },
-    "devDependencies": {
-        "@playwright/test": "^1.51.1",
-        "@wordpress/e2e-test-utils-playwright": "^1.21.0",
-        "@wordpress/env": "^10.21.0",
-        "@wordpress/scripts": "^30.14.1"
-    },
-    "license": "GPL-2.0-or-later"
+	"name": "@prc/post-like-types",
+	"version": "1.0.0",
+	"description": "Provides 'post like' content types like pewresearch.org/decoded, pewresearch.org/engineering, or pewresearch.org/short-reads for PRC Platform.",
+	"scripts": {},
+	"devDependencies": {
+		"@wordpress/scripts": "^31.4.0"
+	},
+	"license": "GPL-2.0-or-later"
 }
