@@ -200,6 +200,7 @@ class Registry {
 			'prc-sitemap',
 			'prc-markdown-for-agents',
 			'prc-spoken-article',
+			'prc-publish-workflows',
 		);
 
 		// Add publication listing support if enabled.
