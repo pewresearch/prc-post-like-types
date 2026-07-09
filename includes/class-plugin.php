@@ -116,20 +116,6 @@ class Plugin {
 			// Taxonomies to register.
 			array( 'decoded-category', 'bylines', 'category' )
 		);
-		// Engineering.
-		$this->registry->register(
-			array(
-				'slug'        => 'engineering',
-				'singular'    => 'Engineering',
-				'plural'      => 'Engineering Blog Posts',
-				'description' => 'Engineering Blog Posts',
-			),
-			array(
-				'rewrite' => array(
-					'slug' => 'engineering',
-				),
-			),
-		);
 		// Press Releases.
 		$this->registry->register(
 			array(

@@ -10,7 +10,7 @@
  * @wordpress-plugin
  * Plugin Name:       PRC "Post-Like" Types
  * Plugin URI:        https://github.com/pewresearch/prc-post-like-types
- * Description:       Provides "post-like" content types like pewresearch.org/decoded, pewresearch.org/engineering, pewresearch.org/press-releases, or pewresearch.org/short-reads for PRC Platform. These post types all share a common permalink structure: post-type/YYYY/MM/DD/post-name but are independent of each other.
+ * Description:       Provides "post-like" content types like pewresearch.org/decoded, pewresearch.org/press-releases, or pewresearch.org/short-reads for PRC Platform. These post types all share a common permalink structure: post-type/YYYY/MM/DD/post-name but are independent of each other.
  * Version:           1.0.0
  * Requires at least: 6.7
  * Requires PHP:      8.2
