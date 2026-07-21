@@ -1,6 +1,6 @@
 {
 	"name": "@prc/post-like-types",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "Provides 'post like' content types like pewresearch.org/decoded, pewresearch.org/press-releases, or pewresearch.org/short-reads for PRC Platform.",
 	"scripts": {},
 	"devDependencies": {

@@ -10,7 +10,6 @@ Registers a set of independent, `post`-mirroring custom post types for PRC Platf
 - Types that declare `pub_listing` support (`decoded`, `short-read`) get `prc-publication-listing` support and are included in publication listings and the main RSS feed via `prc-publication-listing`
 - Auto-enforces a matching `formats` taxonomy term on every incremental save (e.g. a `decoded` post always gets the `decoded` format term)
 - Attaches `notes` editor support to each registered post type
-- Flushes rewrite rules and notifies `DEFAULT_TECHNICAL_CONTACT` on plugin activation and deactivation
 - Loads a WP-CLI utility: `wp prc templates bulk-update` (bulk `_wp_page_template` changes across any post type; defaults to dry-run)
 
 ## Registered post types
@@ -38,13 +37,11 @@ Unpublished posts fall through to the default URL and are unaffected.
 
 | File                                                 | Purpose                                                                                                     |
 | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `prc-post-like-types.php`                            | Plugin entry point; defines constants, registers activation/deactivation hooks, boots `Plugin`              |
+| `prc-post-like-types.php`                            | Plugin entry point; defines constants and boots `Plugin`                                                    |
 | `includes/class-plugin.php`                          | Wires dependencies, instantiates `Registry` with all three post type definitions                            |
 | `includes/class-registry.php`                        | Core logic: post type construction, rewrite rules, permalink filtering, format enforcement, pipeline opt-in |
 | `includes/class-cli.php`                             | WP-CLI: `prc templates bulk-update` for `_wp_page_template` migrations at scale (VIP bulk patterns)         |
 | `includes/class-loader.php`                          | Collects and registers all `add_action` / `add_filter` calls with WordPress                                 |
-| `includes/class-prc-post-like-types-activator.php`   | Flushes rewrites and sends activation notification email                                                    |
-| `includes/class-prc-post-like-types-deactivator.php` | Flushes rewrites and sends deactivation notification email                                                  |
 
 ## Filters / hooks
 
@@ -78,13 +75,12 @@ $this->registry->register(
 );
 ```
 
-After adding a type, flush rewrite rules (`wp rewrite flush` or deactivate/reactivate the plugin).
+After adding a type, flush rewrite rules (`wp rewrite flush`).
 
 ## Dependencies
 
 - `prc-platform-core` (declared via `Requires Plugins` header)
 - Platform filters consumed: `prc_platform_post_publish_pipeline_post_types`, `prc_platform_on_incremental_save`
-- Constant `DEFAULT_TECHNICAL_CONTACT` must be defined in the environment for activation/deactivation emails
 
 ## Notes
 
