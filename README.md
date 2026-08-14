@@ -1,5 +1,7 @@
 # PRC "Post-Like" Types
 
+> Canonical docs: [docs/plugins/prc-post-like-types/](../../docs/plugins/prc-post-like-types/)
+
 Registers a set of independent, `post`-mirroring custom post types for PRC Platform — `decoded`, `press-release`, and `short-read` — each with a shared date-based permalink structure (`/{type}/YYYY/MM/DD/{slug}/`) and full platform feature support.
 
 ## What it does
