@@ -38,28 +38,58 @@ class Admin_Dataview_Lists {
 	/**
 	 * List configs owned by this plugin.
 	 *
-	 * @return array<int, array<string, string>>
+	 * @return array<int, array<string, mixed>>
 	 */
 	public static function list_configs(): array {
+		$duplicate = self::content_duplicate();
+
 		return array(
 			array(
 				'postType'  => 'decoded',
 				'pageSlug'  => 'prc-wp-admin-dataview-decoded',
 				'menuTitle' => __( 'All Decoded', 'prc-post-like-types' ),
 				'pageTitle' => __( 'All Decoded', 'prc-post-like-types' ),
+				'duplicate' => $duplicate,
 			),
 			array(
 				'postType'  => 'press-release',
 				'pageSlug'  => 'prc-wp-admin-dataview-press-release',
 				'menuTitle' => __( 'All Press Releases', 'prc-post-like-types' ),
 				'pageTitle' => __( 'All Press Releases', 'prc-post-like-types' ),
+				'duplicate' => $duplicate,
 			),
 			array(
 				'postType'  => 'short-read',
 				'pageSlug'  => 'prc-wp-admin-dataview-short-read',
 				'menuTitle' => __( 'All Short Reads', 'prc-post-like-types' ),
 				'pageTitle' => __( 'All Short Reads', 'prc-post-like-types' ),
+				'duplicate' => $duplicate,
 			),
+		);
+	}
+
+	/**
+	 * Shared editorial include list. Falls back when the shell is absent.
+	 *
+	 * @return array<string, mixed>
+	 */
+	private static function content_duplicate(): array {
+		$include = array(
+			'bylines',
+			'acknowledgements',
+			'displayBylines',
+			'relatedPosts',
+			'reportMaterials',
+			'_prc_seo_data',
+			'artDirection',
+			'_thumbnail_id',
+		);
+		if ( class_exists( \PRC\Platform\Wp_Admin_Dataview\Duplicate_Args::class ) ) {
+			$include = \PRC\Platform\Wp_Admin_Dataview\Duplicate_Args::content_include_meta();
+		}
+
+		return array(
+			'includeMeta' => $include,
 		);
 	}
 }
