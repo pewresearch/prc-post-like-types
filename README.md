@@ -19,8 +19,8 @@ Registers a set of independent, `post`-mirroring custom post types for PRC Platf
 | Post type       | Rewrite slug    | `pub_listing` | Taxonomies (additional)                                       |
 | --------------- | --------------- | ------------- | ------------------------------------------------------------- |
 | `decoded`       | `decoded`       | yes           | `decoded-category`, `bylines`, `category`, `_post_visibility` |
-| `press-release` | `press-release` | no            | `collections`                                                 |
-| `short-read`    | `short-reads`   | yes           | `datasets`, `collections`, `bylines`, `_post_visibility`      |
+| `press-release` | `press-release` | no            | `collection`                                                 |
+| `short-read`    | `short-reads`   | yes           | `datasets`, `collection`, `bylines`, `_post_visibility`      |
 
 All types share these base taxonomies: `category`, `collection`, `formats`, `languages`, `research-teams`.
 
@@ -73,7 +73,7 @@ $this->registry->register(
             'slug' => 'my-type', // URL prefix
         ),
     ),
-    array( 'bylines', 'collections' ) // additional taxonomies beyond the defaults
+    array( 'bylines', 'collection' ) // additional taxonomies beyond the defaults
 );
 ```
 

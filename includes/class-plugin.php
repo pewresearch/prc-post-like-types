@@ -131,7 +131,7 @@ class Plugin {
 					'slug' => 'press-release',
 				),
 			),
-			array( 'collections' )
+			array( 'collection' )
 		);
 		// Short Reads.
 		$this->registry->register(
@@ -147,7 +147,7 @@ class Plugin {
 					'slug' => 'short-reads',
 				),
 			),
-			array( 'datasets', 'collections', 'bylines' )
+			array( 'datasets', 'collection', 'bylines' )
 		);
 	}
 
