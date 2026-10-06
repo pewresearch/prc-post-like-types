@@ -308,9 +308,16 @@ class Registry {
 				if ( 'publish' !== $post->post_status ) {
 					return $url;
 				}
+				// Match only the rewrite slug path segment. The post name, or the editor's
+				// `%post-type%` placeholder, can contain the same string.
 				$rewrite_slug = $args['rewrite']['slug'];
 				$date_path    = get_the_date( 'Y/m/d', $post );
-				$url          = str_replace( $rewrite_slug, $rewrite_slug . '/' . $date_path, $url );
+				$url          = preg_replace(
+					'#/' . preg_quote( $rewrite_slug, '#' ) . '/#',
+					'/' . $rewrite_slug . '/' . $date_path . '/',
+					$url,
+					1
+				);
 			}
 		}
 		return $url;
